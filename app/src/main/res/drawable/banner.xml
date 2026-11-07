@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Placeholder 320x180 launcher banner: a dark screen with an orange bar. -->
+<!--
+  Launcher banner (320x180): the HN|TV logo of the site, a white-on-orange HN box next to an
+  orange-outlined TV box, on its dark background. The letters are 5x7 pixel glyphs drawn as
+  rectangles, since a vector drawable has no text.
+-->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="320dp"
     android:height="180dp"
     android:viewportWidth="320"
     android:viewportHeight="180">
-    <path android:fillColor="#111111" android:pathData="M0,0h320v180h-320z" />
-    <path android:fillColor="#FF6600" android:pathData="M40,78h240v24h-240z" />
+
+    <!-- background -->
+    <path android:fillColor="#16110D" android:pathData="M0,0h320v180h-320z" />
+
+    <!-- HN box: filled, rounded on the left -->
+    <path
+        android:fillColor="#FF6600"
+        android:pathData="M48,48H160V132H48A8,8 0 0 1 40,124V56A8,8 0 0 1 48,48Z" />
+
+    <!-- TV box: orange outline, no left border, rounded on the right -->
+    <path
+        android:fillColor="#FF6600"
+        android:pathData="M160,48H272A8,8 0 0 1 280,56V124A8,8 0 0 1 272,132H160Z" />
+    <path
+        android:fillColor="#16110D"
+        android:pathData="M160,52H272A4,4 0 0 1 276,56V124A4,4 0 0 1 272,128H160Z" />
+
+    <!-- H and N, white -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M56,62h8v8h-8zM88,62h8v8h-8zM56,70h8v8h-8zM88,70h8v8h-8zM56,78h8v8h-8zM88,78h8v8h-8zM56,86h40v8h-40zM56,94h8v8h-8zM88,94h8v8h-8zM56,102h8v8h-8zM88,102h8v8h-8zM56,110h8v8h-8zM88,110h8v8h-8z
+M104,62h8v8h-8zM136,62h8v8h-8zM104,70h16v8h-16zM136,70h8v8h-8zM104,78h8v8h-8zM120,78h8v8h-8zM136,78h8v8h-8zM104,86h8v8h-8zM120,86h8v8h-8zM136,86h8v8h-8zM104,94h8v8h-8zM120,94h8v8h-8zM136,94h8v8h-8zM104,102h8v8h-8zM128,102h16v8h-16zM104,110h8v8h-8zM136,110h8v8h-8z" />
+
+    <!-- T and V, orange -->
+    <path
+        android:fillColor="#FF6600"
+        android:pathData="M176,62h40v8h-40zM192,70h8v8h-8zM192,78h8v8h-8zM192,86h8v8h-8zM192,94h8v8h-8zM192,102h8v8h-8zM192,110h8v8h-8z
+M224,62h8v8h-8zM256,62h8v8h-8zM224,70h8v8h-8zM256,70h8v8h-8zM224,78h8v8h-8zM256,78h8v8h-8zM224,86h8v8h-8zM256,86h8v8h-8zM224,94h8v8h-8zM256,94h8v8h-8zM232,102h8v8h-8zM248,102h8v8h-8zM240,110h8v8h-8z" />
 </vector>

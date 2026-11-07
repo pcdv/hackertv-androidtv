@@ -32,13 +32,15 @@ Android Studio is optional: the command-line SDK tools and the Gradle wrapper ar
 ```sh
 ./gradlew assembleDebug
 adb connect <tv-ip>:5555        # enable Developer options and network debugging on the TV
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r --user 0 app/build/outputs/apk/debug/app-debug.apk
 ```
 
-The app appears in the launcher as HackerTV.
+The app appears in the launcher as HackerTV. `--user 0` installs for the owner profile: on a TV
+with a second user, a plain `adb install` can report success while the app stays missing from the
+launcher.
 
 ## Known limits
 
 - Some videos disallow embedding and are skipped by the page itself.
 - The CRT and VHS filters can stutter on slower TV chips. Use CLEAN there.
-- The banner is a placeholder.
+- The app needs Android 8.0 (API 26) or newer, for its adaptive launcher icon.
