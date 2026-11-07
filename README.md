@@ -39,6 +39,24 @@ The app appears in the launcher as HackerTV. `--user 0` installs for the owner p
 with a second user, a plain `adb install` can report success while the app stays missing from the
 launcher.
 
+## Releases
+
+Pushing a tag such as `v0.2.0` runs the Release workflow. It builds an APK signed with the
+project's key, publishes it on the Releases page with its SHA-256, and records a build provenance
+attestation that links the file to the workflow run and commit that produced it.
+
+To check a download, with the GitHub CLI:
+
+```sh
+gh attestation verify hackertv-androidtv-0.2.0.apk --repo pcdv/hackertv-androidtv
+```
+
+This confirms that the file was built by this repository's workflow from the tagged commit,
+which you can then read. It does not say the source is harmless. A release APK installs over an
+earlier one only if both carry the same signing key, so the key is kept out of the repository
+and a build from your own checkout is signed with your debug key and replaces it only after an
+uninstall.
+
 ## Known limits
 
 - Some videos disallow embedding and are skipped by the page itself.
