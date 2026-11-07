@@ -35,6 +35,7 @@ class MainActivity : Activity() {
                     // Switch the TV on (the page shows a power button until it is clicked), then
                     // enter theater mode, the page's full-window layout. Its own fullscreen button
                     // needs a native custom view, which this WebView does not provide.
+                    view.evaluateJavascript(LET_DPAD_NAVIGATE, null)
                     view.evaluateJavascript(
                         """setTimeout(()=>{
                             document.getElementById('powerCta')?.click();
@@ -107,6 +108,23 @@ class MainActivity : Activity() {
 
     private companion object {
         const val URL = "https://hackertv.org/"
+
+        /**
+         * The page turns ArrowUp/ArrowDown into channel changes and cancels the key, which stops
+         * the D-pad from moving focus between its buttons. Real key presses (isTrusted) are kept
+         * from reaching the page, so the D-pad navigates; the Channel keys are re-sent from
+         * [REMOTE_KEYS] as synthetic events, which pass through. A mousemove wakes the theater-mode
+         * controls, which otherwise appear only on a key the page has seen.
+         */
+        const val LET_DPAD_NAVIGATE = """(()=>{
+            if(window.__tvDpad) return; window.__tvDpad=true;
+            addEventListener('keydown',e=>{
+              if(e.isTrusted&&(e.key==='ArrowUp'||e.key==='ArrowDown')){
+                e.stopPropagation();
+                document.dispatchEvent(new Event('mousemove'));
+              }
+            },true);
+        })()"""
 
         /** Remote keys the page has no handler for, mapped to the keys it has. */
         val REMOTE_KEYS = mapOf(
