@@ -1,0 +1,42 @@
+# hackertv-androidtv
+
+A thin Android TV launcher for [HackerTV](https://hackertv.org/), the web app that plays
+Hacker News videos as a schedule of TV channels. It is for Google TV and Android TV devices.
+
+The app holds no HackerTV code. It is a full-screen WebView on `https://hackertv.org/`, so the
+channel data, the schedule and the viewer count stay the author's. HackerTV's source is at
+[dsalzman/hackertv](https://github.com/dsalzman/hackertv) and carries no license, so nothing from
+it is copied here.
+
+## Remote control
+
+The page already handles up and down (channel), digits followed by Enter (direct channel) and
+Escape. The app adds the keys a TV remote has and a browser does not.
+
+| Remote key        | Action                                                 |
+|-------------------|--------------------------------------------------------|
+| Channel up / down | Next / previous channel                                |
+| Red, Guide        | Channel guide                                          |
+| Green             | Picture filter (CLEAN, CRT, VHS, B&W)                  |
+| Yellow, Captions  | Captions                                               |
+| Blue, Info        | Program info                                           |
+| Back              | Close the guide; twice within two seconds to exit      |
+
+## Build and install
+
+The project needs the Android SDK (platform 34) and a JDK 17 or newer. It has no Gradle wrapper
+yet: run `gradle wrapper` once, or open the folder in Android Studio, which creates it.
+
+```sh
+./gradlew assembleDebug
+adb connect <tv-ip>:5555        # enable Developer options and network debugging on the TV
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+The app appears in the launcher as HackerTV.
+
+## Known limits
+
+- Some videos disallow embedding and are skipped by the page itself.
+- The CRT and VHS filters can stutter on slower TV chips. Use CLEAN there.
+- The banner is a placeholder.
