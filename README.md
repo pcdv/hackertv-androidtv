@@ -44,3 +44,8 @@ launcher.
 - Some videos disallow embedding and are skipped by the page itself.
 - The CRT and VHS filters can stutter on slower TV chips. Use CLEAN there.
 - The app needs Android 8.0 (API 26) or newer, for its adaptive launcher icon.
+
+## License
+
+MIT, see [LICENSE](LICENSE). It covers this launcher only. HackerTV and its name belong to its
+author, and this project is not affiliated with it.
