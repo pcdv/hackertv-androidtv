@@ -32,9 +32,17 @@ class MainActivity : Activity() {
             webChromeClient = WebChromeClient()
             webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView, url: String) {
-                    // Switch the TV on: the page shows a power button until it is clicked.
+                    // Switch the TV on (the page shows a power button until it is clicked), then
+                    // enter theater mode, the page's full-window layout. Its own fullscreen button
+                    // needs a native custom view, which this WebView does not provide.
                     view.evaluateJavascript(
-                        "setTimeout(()=>document.getElementById('powerCta')?.click(),1500)", null
+                        """setTimeout(()=>{
+                            document.getElementById('powerCta')?.click();
+                            setTimeout(()=>{
+                              if(!document.body.classList.contains('theater'))
+                                document.dispatchEvent(new KeyboardEvent('keydown',{key:'t',bubbles:true}));
+                            },1500);
+                        },1500)""", null
                     )
                 }
             }
@@ -108,6 +116,7 @@ class MainActivity : Activity() {
             KeyEvent.KEYCODE_PROG_GREEN to "f",   // picture filter
             KeyEvent.KEYCODE_PROG_YELLOW to "c",  // captions
             KeyEvent.KEYCODE_PROG_BLUE to "i",    // info
+            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE to "t", // theater (full window) on or off
             KeyEvent.KEYCODE_GUIDE to "g",
             KeyEvent.KEYCODE_INFO to "i",
             KeyEvent.KEYCODE_CAPTIONS to "c",

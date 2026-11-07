@@ -20,6 +20,7 @@ Escape. The app adds the keys a TV remote has and a browser does not.
 | Green             | Picture filter (CLEAN, CRT, VHS, B&W)                  |
 | Yellow, Captions  | Captions                                               |
 | Blue, Info        | Program info                                           |
+| Play / Pause      | Theater mode (full window) on or off                   |
 | Back              | Close the guide; twice within two seconds to exit      |
 
 ## Build and install
