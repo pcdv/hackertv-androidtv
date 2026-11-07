@@ -24,8 +24,9 @@ Escape. The app adds the keys a TV remote has and a browser does not.
 
 ## Build and install
 
-The project needs the Android SDK (platform 34) and a JDK 17 or newer. It has no Gradle wrapper
-yet: run `gradle wrapper` once, or open the folder in Android Studio, which creates it.
+The project needs the Android SDK (platform 34, build-tools 34.0.0) and a JDK 17 or newer.
+Android Studio is optional: the command-line SDK tools and the Gradle wrapper are enough. Point
+`ANDROID_HOME` at the SDK, or put `sdk.dir` in `local.properties`.
 
 ```sh
 ./gradlew assembleDebug
